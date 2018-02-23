@@ -1,14 +1,15 @@
-// not this one:
-// import express from 'express' because at the time Node JS had no support for ES2015 modules
-// on the react side of things we will use import express from 'express'
-// down: common js modules
+
 const express = require('express');
+const mongoose = require('mongoose');
+const keys = require('./config/keys');
+require('./models/User'); //this has to go first
+require('./services/passport');  //this has to go second
+
+mongoose.connect(keys.mongoURI)
+
 const app = express();
 
-// app is the express server
-app.get('/', (req, res) => {
-  res.send({ hello: 'is it me youre looking for?'});
-});
+require('./routes/authRoutes')(app); //instead of: require('./routes/authRoutes');
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT);
