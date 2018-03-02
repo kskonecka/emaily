@@ -15,4 +15,14 @@ module.exports= (app) => {
   }));
 
   app.get('/auth/google/callback', passport.authenticate('google'));
+
+  app.get('/api/logout', (req, res) => {
+    req.logout(); //logout() is autmatically attached to the req object by passport
+    res.send(req.user); //something that will say undefined,/ no content/ or nothing at all
+  });
+
+  app.get('/api/current_user', (req, res) => {
+    // res.send(req.session)
+    res.send(req.user);
+  })
 }

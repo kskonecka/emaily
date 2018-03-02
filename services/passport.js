@@ -5,6 +5,19 @@ const keys = require('../config/keys');
 
 const User = mongoose.model('users'); //thats Model Class
 
+passport.serializeUser((user, done) => {
+  done(null, user.id); // null - no error, all went fine; user.id - identyfying piece of information, that is going to identify the user in follow up requests
+                       // obs! user.id is not google profile.id (look in mongoDB). cause what if you sign with FB and not google - no google id. with user.id something is always there
+                       // OAuth's only purpose is to allow smeone to sign in. after that, we use our own internal IDs
+});
+
+passport.deserializeUser((id, done) => { //function we write to turn user id into a user
+  User.findById(id)
+    .then(user => {
+      done(null, user);
+    })
+})
+
 passport.use(
   new GoogleStrategy({
     clientID: keys.googleClientID,
