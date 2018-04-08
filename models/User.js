@@ -5,7 +5,8 @@ const { Schema } = mongoose;       // it means: the mongoose objects has a prope
 
 const userSchema = new Schema({
   googleID: String,
-  // name: String
+  // name: String,
+  credits: { type: Number, default: 0 }
 });
 
 mongoose.model('users', userSchema); // first argument is the name of mongoDB collection
