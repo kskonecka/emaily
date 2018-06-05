@@ -6,6 +6,7 @@ const passport = require('passport'); //pulls user id out of cookie data
 const bodyParser = require('body-parser'); //its a middleware that needs to be wired with express by app.use
 const keys = require('./config/keys');
 require('./models/User'); //this has to go first
+require('./models/Survey');
 require('./services/passport');  //this has to go second
 
 mongoose.connect(keys.mongoURI)
@@ -24,6 +25,7 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app); //instead of: require('./routes/authRoutes');
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
   // Express will serve up prod assets like main.js or main.css
