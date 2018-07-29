@@ -13,7 +13,7 @@
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run webhook\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "webhook": "lt -p 5000 -s rtyrtbgbgbvma"
+    "webhook": "lt -p 5000 -s rtyrtfgfgfgbgbgbvma"
   },
   "author": "",
   "license": "ISC",
@@ -23,9 +23,11 @@
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.2",
     "localtunnel": "^1.9.0",
+    "lodash": "^4.17.10",
     "mongoose": "^5.0.6",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
+    "path-parser": "^4.2.0",
     "sendgrid": "^5.2.3",
     "stripe": "^5.8.0"
   }
